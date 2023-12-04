@@ -34,8 +34,8 @@ async fn main() {
 fn serving(req: Request<Body>) -> Result<Response<Body>, Error> {
     let (status ,filename,_type) = match req.uri().path() {
         "/" | "/index" | "index.html" => (200,"html/index.html","text/html"),
-        "/index.js" => ,
-        "/index.css" => .
+        "/index.js" => (200,"html/index.css","text/javascript"),
+        "/index.css" => (200,"html/index.css","text/css"),
         _ => (404,"html/404.html","text/html"),
     };
     let contents = match read(filename) {
