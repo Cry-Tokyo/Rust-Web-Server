@@ -33,20 +33,9 @@ async fn main() {
 }
 fn serving(req: Request<Body>) -> Result<Response<Body>, Error> {
     let (status ,filename,_type) = match req.uri().path() {
-        "/" => (200,"html/index.html","text/html"),
-        "/about" => (200,"html/about.html","text/html"),
-        "/terminal-script.js" => (200, "js/terminal-script.js","text/javascript"),
-        "/terminal-styles.css" => (200,"css/terminal-styles.css","text/css"),
-        "/favicon.ico" => (200,"img/favicon.ico","image/x-icon"),
-        "/terminal" => (200,"html/terminal.html","text/html"),
-        "/blog" => (200,"html/blog.html","text/html"),
-        "/home-styles.css" => (200,"css/home-styles.css","text/css"),
-        "/home-script.js" => (200,"js/home-script.js","text/javascript"),
-        "/him.jpg" => (200,"img/him.jpg","image/jpg"),
-        "/robots.txt" =>(200,"robots.txt","text/plain"),
-        "/resume" => (200,"html/resume.html","text/html"),
-        "/contacts" => (200, "html/contacts.html","text/html"),
-        "/DDNS" => (200,"test.html","text/html"),
+        "/" | "/index" | "index.html" => (200,"html/index.html","text/html"),
+        "/index.js" => ,
+        "/index.css" => .
         _ => (404,"html/404.html","text/html"),
     };
     let contents = match read(filename) {
